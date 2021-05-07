@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct HealthMeApp: App {
@@ -15,5 +16,17 @@ struct HealthMeApp: App {
         WindowGroup {
             ContentView(viewManager: viewManager)
         }
+    }
+}
+
+
+//Connect Firebase
+class Delegate : NSObject, UIApplicationDelegate, ObservableObject {
+    @Published var signedIn: Bool = false
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+         
+        return true
     }
 }
