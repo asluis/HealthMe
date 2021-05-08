@@ -7,7 +7,6 @@ target 'HealthMe' do
 
   # Pods for HealthMe
 
-pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'

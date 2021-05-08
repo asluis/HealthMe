@@ -12,6 +12,7 @@ import Firebase
 struct HealthMeApp: App {
     @StateObject var viewManager:ViewManager = ViewManager()
 
+    @UIApplicationDelegateAdaptor(Delegate.self) var delegate
     var body: some Scene {
         WindowGroup {
             ContentView(viewManager: viewManager)
