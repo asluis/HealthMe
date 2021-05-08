@@ -17,6 +17,7 @@
 		AA48333F2643307400D2E7A0 /* ViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA48333E2643307400D2E7A0 /* ViewManager.swift */; };
 		AA483341264502F400D2E7A0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA483340264502F300D2E7A0 /* GoogleService-Info.plist */; };
 		AA4833432646381200D2E7A0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4833422646381200D2E7A0 /* LoginView.swift */; };
+		AA4833452647201300D2E7A0 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4833442647201300D2E7A0 /* RegistrationView.swift */; };
 		AA6386BA2641E029007839C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6386B92641E029007839C2 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,7 @@
 		AA48333E2643307400D2E7A0 /* ViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewManager.swift; sourceTree = "<group>"; };
 		AA483340264502F300D2E7A0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA4833422646381200D2E7A0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AA4833442647201300D2E7A0 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		AA6386B92641E029007839C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BF09F5B8D48FA1AE5497FAC3 /* Pods_HealthMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				AA483340264502F300D2E7A0 /* GoogleService-Info.plist */,
 				AA48333E2643307400D2E7A0 /* ViewManager.swift */,
 				AA4833422646381200D2E7A0 /* LoginView.swift */,
+				AA4833442647201300D2E7A0 /* RegistrationView.swift */,
 			);
 			path = HealthMeFolder;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				AA4249B5260961820088163E /* FirstScreen.swift in Sources */,
 				AA6386BA2641E029007839C2 /* User.swift in Sources */,
 				AA4249A52609614C0088163E /* HealthMeApp.swift in Sources */,
+				AA4833452647201300D2E7A0 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

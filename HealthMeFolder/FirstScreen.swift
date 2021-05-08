@@ -37,7 +37,7 @@ struct FirstScreen: View {
                                 .clipShape(Capsule())
                         })
                         Button(action: {
-                            // Action
+                            viewManager.currentView = .register
                         }, label: {
                             Text("Register")
                                 .font(.title)

@@ -15,6 +15,7 @@ class ViewManager:ObservableObject{
 
 
 enum Page{
+    case newAdd
     case main
     case intro
     case login

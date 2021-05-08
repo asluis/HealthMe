@@ -35,39 +35,33 @@ struct DataEntryView: View {
             GeometryReader{ geo in
                 VStack{
                     Form{
-                        if isRegistering{
-                            Section(header: Text("Registration information")){
-                                TextField("Name", text: $name)
-                                TextField("Gender", text: $gender)
-                                TextField("Username", text: $username)
-                                SecureField("Password", text: $password)
-                                SecureField("Password", text: $confirmPassword)
+ 
+                        
+                            Section(header: Text("Vitals")){
+                                TextField("Heartrate (beats per min)", text: $hr)
+                                    .keyboardType(.numberPad)
+                                TextField("Blood Pressure ", text: $height)
+                                    .keyboardType(.numberPad)
                             }
-                        }
-                        Section(header: Text("Vitals")){
-                            TextField("Heartrate (beats per min)", text: $hr)
-                                .keyboardType(.numberPad)
-                            TextField("Blood Pressure ", text: $height)
-                                .keyboardType(.numberPad)
-                        }
-                        Section(header: Text("Activity")){
-                            TextField("Weight (lbs)", text: $weight)
-                                .keyboardType(.numberPad)
-                            TextField("Activity Time (min)", text: $time)
-                                .keyboardType(.numberPad)
+                            Section(header: Text("Activity")){
+                                TextField("Weight (lbs)", text: $weight)
+                                    .keyboardType(.numberPad)
+                                TextField("Activity Time (min)", text: $time)
+                                    .keyboardType(.numberPad)
 
-                            TextField("Calories in", text: $inCal)
-                                .keyboardType(.numberPad)
+                                TextField("Calories in", text: $inCal)
+                                    .keyboardType(.numberPad)
 
-                            TextField("Calories out", text: $outCal)
-                                .keyboardType(.numberPad)
+                                TextField("Calories out", text: $outCal)
+                                    .keyboardType(.numberPad)
+                            }
+                        
 
-                        }
                     }
                     Button(action: {
                         // TODO: action
                     }){
-                        Text(isRegistering ? "Register" : "Continue")
+                        Text("Continue")
                             .font(.headline)
                             .bold()
                             .padding()

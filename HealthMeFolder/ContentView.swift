@@ -2,7 +2,6 @@
 //  ContentView.swift
 //  HealthMe
 //
-//  Created by Luis Alvarez on 3/22/21.
 //
 
 import SwiftUI
@@ -11,7 +10,6 @@ struct ContentView: View {
     // Depending on val of viewManager we want to show the appropriate view
     @StateObject var viewManager:ViewManager
     var body: some View {
-        //DataEntry_View()
         GeometryReader{geo in
             VStack{
                 Spacer()
@@ -25,8 +23,11 @@ struct ContentView: View {
                     Text("GRAPHS")
                 case .add:
                     DataEntryView(users: Users(), isRegistering: false) // TODO: Fix
+                case .newAdd:
+                    DataEntryView(users: Users(), isRegistering: true)
+                    // TODO: Fix
                 case .register:
-                    Text("Register")
+                    RegistrationView(viewManager: viewManager)
                 case .login:
                     LoginView(viewManager: viewManager)
                 case .intro:

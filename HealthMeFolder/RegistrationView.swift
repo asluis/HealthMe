@@ -1,23 +1,27 @@
 //
-//  LoginView.swift
+//  RegistrationView.swift
 //  HealthMe
 //
-//  Created by Luis Alvarez on 5/7/21.
+//  Created by Luis Alvarez on 5/8/21.
 //
 
 import SwiftUI
+import FirebaseAuth
 import Firebase
 
 
-struct LoginView: View {
-    @StateObject var viewManager:ViewManager
+struct RegistrationView: View {
+    @StateObject var viewManager: ViewManager
     
-    @State private var email = ""
-    @State private var password = ""
+    
+    @State var email = ""
+    @State var password = ""
+    @State var confirmPassword = ""
+    @State var name = ""
     
     @State var isShowingAlert = false
-    @State var alertMsg = ""
     @State var alertTitle = ""
+    @State var alertMsg = ""
     
     var body: some View {
         GeometryReader{ geo in
@@ -28,7 +32,7 @@ struct LoginView: View {
                 VStack{
                     
 
-                    Text("Sign In")
+                    Text("Register")
                         .font(.largeTitle)
                         
                     HStack{
@@ -45,26 +49,37 @@ struct LoginView: View {
                         SecureField("Password", text: $password)
                             .autocapitalization(.none)
                     }
+                    HStack{
+                        Image(systemName: "key")
+                        SecureField("Confirm Password", text: $confirmPassword)
+                            .autocapitalization(.none)
+                    }
                     
                     
                     Button(action:{
-                        if email == "" || password == "" {
+                        if !emailIsValid(email){
+                            
+                        } else if email == "" || password == "" || confirmPassword == "" {
                             alertTitle = "Error Logging in"
                             alertMsg = "Please fill out BOTH email and password"
                             isShowingAlert = true
+                            
+                        }else if password != confirmPassword {
+                            alertTitle = "Confirm password"
+                            alertMsg = "Please make sure you correctly confirm your password"
+                            isShowingAlert = true
                         }else{
-                        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+                            // action. Register here
+                            Auth.auth().createUser(withEmail: email, password: password) { Result, error in
                                 if error != nil {
-                                    alertTitle = "Error Loggin in"
-                                    alertMsg = error?.localizedDescription ?? "Error loggin in"
-                                
+                                    alertTitle = "Error creating account"
+                                    alertMsg = error?.localizedDescription ?? "Error"
                                     isShowingAlert = true
                                 }else{
-                                    // Successful login
-                                    email = ""
-                                    password = ""
+                                    // Success!
                                     
-                                   print("SUCCESS LOGGING IN")
+                                    print("SUCCESSFUL REGISTRATION for \(email)!")
+                                    viewManager.currentView = .newAdd
                                 }
                             }
                         }
@@ -93,14 +108,24 @@ struct LoginView: View {
                 }
             }
             .alert(isPresented: $isShowingAlert){
-                Alert(title: Text(alertTitle), message: Text(alertMsg), dismissButton: .default(Text("Dismiss")))
+                Alert(title: Text(alertTitle), message: Text(alertMsg), dismissButton: .default(Text("Dismiss:")))
             }
         }
+    
     }
+    
+func emailIsValid(_ email: String) -> Bool{
+    let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+    
+    let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+    return emailPred.evaluate(with: email)
 }
 
-struct LoginView_Previews: PreviewProvider {
+
+}
+
+struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewManager: ViewManager())
+        RegistrationView(viewManager: ViewManager())
     }
 }
