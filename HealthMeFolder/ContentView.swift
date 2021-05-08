@@ -17,6 +17,8 @@ struct ContentView: View {
                 Spacer()
                 // Views go here
                 switch viewManager.currentView{
+                case .main:
+                    FirstScreen(viewManager: viewManager)
                 case .home:
                     Text("HOME")
                 case .graphs:
@@ -26,7 +28,7 @@ struct ContentView: View {
                 case .register:
                     Text("Register")
                 case .login:
-                    Text("Login")
+                    LoginView(viewManager: viewManager)
                 case .intro:
                     FirstScreen(viewManager: viewManager)
                 }

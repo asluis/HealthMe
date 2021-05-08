@@ -8,13 +8,14 @@
 import SwiftUI
 
 class ViewManager:ObservableObject{
-    @Published var currentView:Page = .home
+    @Published var currentView:Page = .main
     
     
 }
 
 
 enum Page{
+    case main
     case intro
     case login
     case register

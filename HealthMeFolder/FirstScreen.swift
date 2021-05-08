@@ -25,7 +25,7 @@ struct FirstScreen: View {
                 
                         Spacer()
                         Button(action: {
-                            // action
+                            viewManager.currentView = .login
                         }, label: {
                             Text("Login")
                                 .font(.title)

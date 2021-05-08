@@ -25,6 +25,7 @@ struct User{
     var activityTime = [Int]() // minutes
     var inCal = [Int]()
     var outCal = [Int]()
+    var name = ""
     
     init(weight:Float, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int){
         self.weight.append(weight)
