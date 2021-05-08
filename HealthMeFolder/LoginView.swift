@@ -62,6 +62,9 @@ struct LoginView: View {
                                     isShowingAlert = true
                                 }else{
                                     // Successful login
+                                    email = ""
+                                    password = ""
+                                    
                                    print("SUCCESS LOGGING IN")
                                 
                                 }

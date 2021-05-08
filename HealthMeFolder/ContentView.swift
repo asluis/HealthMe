@@ -33,30 +33,32 @@ struct ContentView: View {
                     FirstScreen(viewManager: viewManager)
                 }
                 Spacer()
-                HStack{
-                    TabBarIcon(viewManager: viewManager, assignedPage: .home, width: geo.size.width / 5, height: geo.size.height / 28, systemIconName: "homekit", tabName: "Home")
-                    
-                    ZStack{
-                        Circle()
-                            .foregroundColor(viewManager.currentView == .add ? .white : .black)
-                            .frame(width: geo.size.width / 7, height: geo.size.height / 7)
-                            .shadow(radius: 4)
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: geo.size.width / 7 - 6, height: geo.size.height / 7-6)
-                            .foregroundColor(Color("AddColor"))
+                if viewManager.currentView == .home || viewManager.currentView == .graphs || viewManager.currentView == .add{
+                    HStack{
+                        TabBarIcon(viewManager: viewManager, assignedPage: .home, width: geo.size.width / 5, height: geo.size.height / 28, systemIconName: "homekit", tabName: "Home")
+                        
+                        ZStack{
+                            Circle()
+                                .foregroundColor(viewManager.currentView == .add ? .white : .black)
+                                .frame(width: geo.size.width / 7, height: geo.size.height / 7)
+                                .shadow(radius: 4)
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: geo.size.width / 7 - 6, height: geo.size.height / 7-6)
+                                .foregroundColor(Color("AddColor"))
+                        }
+                        .padding(.horizontal)
+                        .onTapGesture{
+                            viewManager.currentView = .add
+                        }
+                        
+                        TabBarIcon(viewManager: viewManager, assignedPage: .graphs, width: geo.size.width / 5, height: geo.size.height / 28, systemIconName: "waveform", tabName: "Graphs")
                     }
-                    .padding(.horizontal)
-                    .onTapGesture{
-                        viewManager.currentView = .add
-                    }
-                    
-                    TabBarIcon(viewManager: viewManager, assignedPage: .graphs, width: geo.size.width / 5, height: geo.size.height / 28, systemIconName: "waveform", tabName: "Graphs")
+                    .frame(width: geo.size.width, height: geo.size.height / 8)
+                    .background(Color("TabAreaColor"))
+                    .shadow(radius: 2)
                 }
-                .frame(width: geo.size.width, height: geo.size.height / 8)
-                .background(Color("TabAreaColor"))
-                .shadow(radius: 2)
             }
             .edgesIgnoringSafeArea(.bottom)
         }
