@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import Firebase
 
 struct DataEntryView: View {
     @ObservedObject var users:Users
@@ -26,9 +27,9 @@ struct DataEntryView: View {
     @State var confirmPassword = ""
     
     @State var alertMsg = ""
+    @State var alertTitle = ""
     @State var showingAlert = false
-    let alertTitle = "Incorrect Data"
-
+    
     
     var body: some View {
         NavigationView{
@@ -59,7 +60,8 @@ struct DataEntryView: View {
 
                     }
                     Button(action: {
-                        // TODO: action
+                        setName()
+                        
                     }){
                         Text("Continue")
                             .font(.headline)
@@ -73,7 +75,25 @@ struct DataEntryView: View {
                     .disabled(password != confirmPassword)
                 }
             }
+            .alert(isPresented: $showingAlert){
+                Alert(title: Text(alertTitle), message: Text(alertMsg), dismissButton: .default(Text("Dismiss")))
+            }
             .navigationTitle("How was your day?")
+        }
+    }
+    
+    func setName(){
+        if let user = Auth.auth().currentUser{
+            let userChangeRequest = user.createProfileChangeRequest()
+            userChangeRequest.displayName = name
+            
+            userChangeRequest.commitChanges{ error in
+                if error != nil{
+                    alertTitle = "Error"
+                    alertMsg = error?.localizedDescription ?? "Error"
+                    showingAlert = true
+                }
+            }
         }
     }
 }
