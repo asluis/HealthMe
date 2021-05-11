@@ -26,6 +26,7 @@ struct DataEntryView: View {
     @State var username = ""
     @State var password = ""
     @State var confirmPassword = ""
+    @State var heartRate = ""
     
     @State var alertMsg = ""
     @State var alertTitle = ""
@@ -60,6 +61,9 @@ struct DataEntryView: View {
                     }
                     Button(action: {
                         setName()
+                        user.name = name
+                        user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!)
+                        pushUser()
                         
                     }){
                         Text("Continue")
@@ -81,11 +85,12 @@ struct DataEntryView: View {
         }
     }
     
+    
     func setName(){
         if let user = Auth.auth().currentUser{
             let userChangeRequest = user.createProfileChangeRequest()
             userChangeRequest.displayName = name
-            
+            self.user.name = name
             userChangeRequest.commitChanges{ error in
                 if error != nil{
                     alertTitle = "Error"
@@ -95,11 +100,40 @@ struct DataEntryView: View {
             }
         }
     }
+    
+    func pushUser(){
+        if let userID = Auth.auth().currentUser?.uid{
+            // ie user exists.
+            let userData: [String : Any] = [
+                "inputCount": user.inputCount,
+                "weightSum": user.weightSum,
+                "heartRateSum": user.heartRateSum,
+                "activityTimeSum": user.activityTimeSum,
+                "weight": user.weight,
+                "height": user.height,
+                "gender": user.gender,
+                "heartRate": user.heartRate,
+                "activityTime": user.activityTime,
+                "inCal": user.inCal,
+                "outCal": user.outCal,
+                "name": user.name
+            ]
+            // Calling firebase reference
+            let ref = Database.database().reference()
+            ref.child("users").child(userID).setValue(userData)
+            alertTitle = "SUCCESS"
+            alertMsg = "Successfully uploaded your data!"
+            showingAlert = true
+        }else{
+            fatalError() // just crash at this point
+        }
+        
+    }
 }
 
 struct DataEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        DataEntryView(isRegistering: true, user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
+        DataEntryView(isRegistering: true, user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0, inputCount: 0))
             .preferredColorScheme(.dark)
     }
 }
