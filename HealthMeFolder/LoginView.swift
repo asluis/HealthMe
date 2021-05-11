@@ -11,7 +11,7 @@ import Firebase
 
 struct LoginView: View {
     @StateObject var viewManager:ViewManager
-    @ObservedObject var user:User
+    @StateObject var user:User
     
     @State private var email = ""
     @State private var password = ""
@@ -83,7 +83,7 @@ struct LoginView: View {
                                         let inCal = value?["inCal"] as? Int ?? 0
                                         let outCal = value?["outCal"] as? Int ?? 0
                                         let name = value?["name"] as? String ?? "Nameless"
-                                        user.replaceData(weight: weight, height: height, gender: gender, heartRate: heartRate, time: activityTime, inCal: inCal, outCal: outCal, inCount: inputCount, wSum: weightSum, hrSum: heartRateSum, atSum: activityTimeSum)
+                                        user.replaceData(weight: weight, height: height, gender: gender, heartRate: heartRate, time: activityTime, inCal: inCal, outCal: outCal, inCount: inputCount, wSum: weightSum, hrSum: heartRateSum, atSum: activityTimeSum, name: name)
 
 
                                         viewManager.currentView = .home

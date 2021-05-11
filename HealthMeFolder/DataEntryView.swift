@@ -12,9 +12,9 @@ import Firebase
 struct DataEntryView: View {
     
     let isRegistering:Bool
-    @ObservedObject var viewManager:ViewManager
+    @StateObject var viewManager:ViewManager
     
-    @ObservedObject var user:User
+    @StateObject var user:User
     
     @State var hr = ""
     @State var weight = ""
@@ -62,6 +62,7 @@ struct DataEntryView: View {
                     Button(action: {
                         setName()
                         user.name = name
+                        print("Name is now \(user.name)")
                         user.gender = gender
                         user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!)
                         pushUser()

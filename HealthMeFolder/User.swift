@@ -34,7 +34,7 @@ class User: ObservableObject{
         activityTimeSum = atSum
     }
     
-    func replaceData(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int){
+    func replaceData(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int, name: String){
         self.weight = weight
         self.height = height
         self.gender = gender
@@ -45,6 +45,7 @@ class User: ObservableObject{
         heartRateSum = hrSum
         activityTimeSum = atSum
         self.inputCount = inputCount
+        self.name = name
     }
     
     func addData(weight:Double, heartRate:Int, time:Int, inCal:Int, outCal:Int){

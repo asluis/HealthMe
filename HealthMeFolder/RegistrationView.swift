@@ -95,6 +95,7 @@ struct RegistrationView: View {
                     .padding()
                     
                     Button(action: {
+                        
                         viewManager.currentView = .main
                     }){
                             Text("Back")

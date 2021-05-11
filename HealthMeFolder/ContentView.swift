@@ -10,7 +10,7 @@ struct ContentView: View {
     // Depending on val of viewManager we want to show the appropriate view
     @StateObject var viewManager:ViewManager
     
-    @ObservedObject var currUser:User
+    @StateObject var currUser:User
     
     var body: some View {
         GeometryReader{geo in
@@ -54,7 +54,7 @@ struct ContentView: View {
         case .main:
            return  AnyView(FirstScreen(viewManager: viewManager))
         case .home:
-           return AnyView(Text("HOME"))
+            return AnyView(Home(user: currUser))
         case .graphs:
             return AnyView(Text("GRAPHS"))
         case .add:

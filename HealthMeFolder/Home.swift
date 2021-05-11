@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Home: View {
     
-    @ObservedObject var user:User
+    @StateObject var user:User
     
     var body: some View {
         Text("Hello \(user.name)")
