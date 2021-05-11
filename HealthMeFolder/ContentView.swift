@@ -65,7 +65,7 @@ struct ContentView: View {
         case .register:
             return AnyView(RegistrationView(viewManager: viewManager))
         case .login:
-            return AnyView(LoginView(viewManager: viewManager))
+            return AnyView(LoginView(viewManager: viewManager, user: currUser))
         case .intro:
             return AnyView(FirstScreen(viewManager: viewManager))
         }
@@ -100,6 +100,6 @@ struct TabBarIcon: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewManager: ViewManager(), currUser: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
+        ContentView(viewManager: ViewManager(), currUser: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0, inputCount: 0))
     }
 }

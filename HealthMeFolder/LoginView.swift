@@ -11,6 +11,7 @@ import Firebase
 
 struct LoginView: View {
     @StateObject var viewManager:ViewManager
+    @ObservedObject var user:User
     
     @State private var email = ""
     @State private var password = ""
@@ -65,9 +66,14 @@ struct LoginView: View {
                                     password = ""
                                     
                                    print("SUCCESS LOGGING IN")
+                                    // Now probe database and fetch user data
                                     var ref = Database.database().reference()
-                                    
-                                    
+                                    ref.child("users").child(result!.user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                                        
+                                        
+                                        
+                                        
+                                    })
                                 }
                             }
                         }
@@ -104,6 +110,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewManager: ViewManager())
+        LoginView(viewManager: ViewManager(), user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0, inputCount: 0))
     }
 }

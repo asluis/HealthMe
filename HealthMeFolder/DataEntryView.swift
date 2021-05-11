@@ -105,18 +105,18 @@ struct DataEntryView: View {
         if let userID = Auth.auth().currentUser?.uid{
             // ie user exists.
             let userData: [String : Any] = [
-                "inputCount": user.inputCount,
-                "weightSum": user.weightSum,
-                "heartRateSum": user.heartRateSum,
-                "activityTimeSum": user.activityTimeSum,
-                "weight": user.weight,
-                "height": user.height,
-                "gender": user.gender,
-                "heartRate": user.heartRate,
-                "activityTime": user.activityTime,
-                "inCal": user.inCal,
-                "outCal": user.outCal,
-                "name": user.name
+                "inputCount": user.inputCount as Int,
+                "weightSum": user.weightSum as Double,
+                "heartRateSum": user.heartRateSum as Int,
+                "activityTimeSum": user.activityTimeSum as Int,
+                "weight": user.weight as Double,
+                "height": user.height as Int,
+                "gender": user.gender as String,
+                "heartRate": user.heartRate as Int,
+                "activityTime": user.activityTime as Int,
+                "inCal": user.inCal as Int,
+                "outCal": user.outCal as Int,
+                "name": user.name as String
             ]
             // Calling firebase reference
             let ref = Database.database().reference()
