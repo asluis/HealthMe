@@ -10,9 +10,10 @@ import SwiftUI
 import Firebase
 
 struct DataEntryView: View {
-    @ObservedObject var users:Users
     
     let isRegistering:Bool
+    
+    @ObservedObject var user:User
     
     @State var hr = ""
     @State var weight = ""
@@ -36,8 +37,6 @@ struct DataEntryView: View {
             GeometryReader{ geo in
                 VStack{
                     Form{
- 
-                        
                             Section(header: Text("Vitals")){
                                 TextField("Heartrate (beats per min)", text: $hr)
                                     .keyboardType(.numberPad)
@@ -100,7 +99,7 @@ struct DataEntryView: View {
 
 struct DataEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        DataEntryView(users: Users(), isRegistering: true)
+        DataEntryView(isRegistering: true, user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
             .preferredColorScheme(.dark)
     }
 }

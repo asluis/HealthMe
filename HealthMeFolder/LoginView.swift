@@ -65,6 +65,9 @@ struct LoginView: View {
                                     password = ""
                                     
                                    print("SUCCESS LOGGING IN")
+                                    var ref = Database.database().reference()
+                                    
+                                    
                                 }
                             }
                         }

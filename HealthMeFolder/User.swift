@@ -7,40 +7,43 @@
 
 import Foundation
 
-
-
-class Users:ObservableObject {
-    @Published var users:[User]
+class User: ObservableObject{
+    @Published var inputCount = 0
+    @Published var weightSum = 0.0
+    @Published var heartRateSum = 0
+    @Published var activityTimeSum = 0
     
-    init(){
-        users = [User]()
-    }
-}
-
-struct User{
-    var weight = [Float]()
-    let height:Int // inches
-    var gender = ""
-    var heartRate = [Int]()
-    var activityTime = [Int]() // minutes
-    var inCal = [Int]()
-    var outCal = [Int]()
-    var name = ""
+    @Published var weight = 0.0
+    @Published var height:Int // inches
+    @Published var gender = ""
+    @Published var heartRate = 0
+    @Published var activityTime = 0 // minutes
+    @Published var inCal = 0
+    @Published var outCal = 0
+    @Published var name = ""
     
-    init(weight:Float, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int){
-        self.weight.append(weight)
+    init(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int){
+        self.weight = weight
         self.height = height
         self.gender = gender
-        self.heartRate.append(heartRate)
-        self.activityTime.append(time)
+        self.heartRate = heartRate
+        self.activityTime = time
+        inputCount = inCount
+        weightSum = wSum
+        heartRateSum = hrSum
+        activityTimeSum = atSum
     }
     
-    mutating func addData(weight:Float, heartRate:Int, time:Int, inCal:Int, outCal:Int){
-        self.weight.append(weight)
-        self.heartRate.append(heartRate)
-        self.activityTime.append(time)
-        self.inCal.append(inCal)
-        self.outCal.append(outCal)
+    func addData(weight:Double, heartRate:Int, time:Int, inCal:Int, outCal:Int){
+        inputCount += 1
+        self.weightSum = weightSum + weight
+        self.weight = weight
+        heartRateSum = heartRate + heartRate
+        self.activityTimeSum = activityTimeSum + time
+        
+        self.heartRate = heartRate
+        activityTime = time
+        self.inCal = inCal
+        self.outCal = outCal
     }
-    
 }
