@@ -43,7 +43,7 @@ struct DataEntryView: View {
                             Section(header: Text("Vitals")){
                                 TextField("Heartrate (beats per min)", text: $hr)
                                     .keyboardType(.numberPad)
-                                TextField("Blood Pressure ", text: $height)
+                                TextField("Height", text: $height)
                                     .keyboardType(.numberPad)
                             }
                             Section(header: Text("Activity")){
@@ -64,7 +64,7 @@ struct DataEntryView: View {
                         user.name = name
                         print("Name is now \(user.name)")
                         user.gender = gender
-                        user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!)
+                        user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!, height: Int(height)!, name: name)
                         pushUser()
                         viewManager.currentView = .home
                     }){

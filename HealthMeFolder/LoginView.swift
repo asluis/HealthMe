@@ -83,6 +83,7 @@ struct LoginView: View {
                                         let inCal = value?["inCal"] as? Int ?? 0
                                         let outCal = value?["outCal"] as? Int ?? 0
                                         let name = value?["name"] as? String ?? "Nameless"
+                                        print(name)
                                         user.replaceData(weight: weight, height: height, gender: gender, heartRate: heartRate, time: activityTime, inCal: inCal, outCal: outCal, inCount: inputCount, wSum: weightSum, hrSum: heartRateSum, atSum: activityTimeSum, name: name)
 
 
