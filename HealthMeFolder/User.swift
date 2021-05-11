@@ -22,7 +22,19 @@ class User: ObservableObject{
     @Published public var outCal = 0
     @Published public var name = ""
     
-    init(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int, inputCount:Int){
+    init(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int){
+        self.weight = weight
+        self.height = height
+        self.gender = gender
+        self.heartRate = heartRate
+        self.activityTime = time
+        self.inputCount = inCount
+        weightSum = wSum
+        heartRateSum = hrSum
+        activityTimeSum = atSum
+    }
+    
+    func replaceData(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int){
         self.weight = weight
         self.height = height
         self.gender = gender

@@ -12,6 +12,7 @@ import Firebase
 struct DataEntryView: View {
     
     let isRegistering:Bool
+    @ObservedObject var viewManager:ViewManager
     
     @ObservedObject var user:User
     
@@ -23,9 +24,6 @@ struct DataEntryView: View {
     @State var inCal = ""
     @State var outCal = ""
     @State var name = ""
-    @State var username = ""
-    @State var password = ""
-    @State var confirmPassword = ""
     @State var heartRate = ""
     
     @State var alertMsg = ""
@@ -38,6 +36,10 @@ struct DataEntryView: View {
             GeometryReader{ geo in
                 VStack{
                     Form{
+                        Section(header: Text("Your info")){
+                            TextField("Name", text: $name)
+                            TextField("Gender", text: $gender)
+                        }
                             Section(header: Text("Vitals")){
                                 TextField("Heartrate (beats per min)", text: $hr)
                                     .keyboardType(.numberPad)
@@ -56,15 +58,14 @@ struct DataEntryView: View {
                                 TextField("Calories out", text: $outCal)
                                     .keyboardType(.numberPad)
                             }
-                        
-
                     }
                     Button(action: {
                         setName()
                         user.name = name
+                        user.gender = gender
                         user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!)
                         pushUser()
-                        
+                        viewManager.currentView = .home
                     }){
                         Text("Continue")
                             .font(.headline)
@@ -75,7 +76,6 @@ struct DataEntryView: View {
                             .background(Color.blue)
                     }
                     .padding(.vertical)
-                    .disabled(password != confirmPassword)
                 }
             }
             .alert(isPresented: $showingAlert){
@@ -133,7 +133,7 @@ struct DataEntryView: View {
 
 struct DataEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        DataEntryView(isRegistering: true, user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0, inputCount: 0))
+        DataEntryView(isRegistering: true, viewManager: ViewManager(), user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
             .preferredColorScheme(.dark)
     }
 }

@@ -70,8 +70,24 @@ struct LoginView: View {
                                     var ref = Database.database().reference()
                                     ref.child("users").child(result!.user.uid).observeSingleEvent(of: .value, with: { (snapshot) in
                                         
-                                        
-                                        
+                                        let value = snapshot.value as? NSDictionary
+                                        let inputCount = value?["inputCount"] as? Int ?? 0
+                                        let weightSum = value?["weightSum"] as? Double ?? 0.0
+                                        let heartRateSum = value?["heartRateSum"] as? Int ?? 0
+                                        let activityTimeSum = value?["activityTimeSum"] as? Int ?? 0
+                                        let weight = value?["weight"] as? Double ?? 0.0
+                                        let height = value?["height"] as? Int ?? 0
+                                        let gender = value?["gender"] as? String ?? "Genderless ghoul"
+                                        let heartRate = value?["heartRate"] as? Int ?? 0
+                                        let activityTime = value?["activityTime"] as? Int ?? 0
+                                        let inCal = value?["inCal"] as? Int ?? 0
+                                        let outCal = value?["outCal"] as? Int ?? 0
+                                        let name = value?["name"] as? String ?? "Nameless"
+                                        user.replaceData(weight: weight, height: height, gender: gender, heartRate: heartRate, time: activityTime, inCal: inCal, outCal: outCal, inCount: inputCount, wSum: weightSum, hrSum: heartRateSum, atSum: activityTimeSum)
+
+
+                                        viewManager.currentView = .home
+
                                         
                                     })
                                 }
@@ -110,6 +126,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(viewManager: ViewManager(), user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0, inputCount: 0))
+        LoginView(viewManager: ViewManager(), user: User(weight: 0, height: 0, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
     }
 }
