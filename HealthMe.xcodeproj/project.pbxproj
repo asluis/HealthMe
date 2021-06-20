@@ -20,7 +20,6 @@
 		AA4833452647201300D2E7A0 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4833442647201300D2E7A0 /* RegistrationView.swift */; };
 		AA4E6AF3264A0D7400E312DB /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4E6AF2264A0D7400E312DB /* Home.swift */; };
 		AA6386BA2641E029007839C2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6386B92641E029007839C2 /* User.swift */; };
-		AADE40D9264C77E100FA0DFA /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE40D8264C77E100FA0DFA /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +39,6 @@
 		AA4833442647201300D2E7A0 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		AA4E6AF2264A0D7400E312DB /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		AA6386B92641E029007839C2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		AADE40D8264C77E100FA0DFA /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		BF09F5B8D48FA1AE5497FAC3 /* Pods_HealthMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HealthMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -90,7 +88,6 @@
 				AA4833422646381200D2E7A0 /* LoginView.swift */,
 				AA4833442647201300D2E7A0 /* RegistrationView.swift */,
 				AA4E6AF2264A0D7400E312DB /* Home.swift */,
-				AADE40D8264C77E100FA0DFA /* GraphView.swift */,
 			);
 			path = HealthMeFolder;
 			sourceTree = "<group>";
@@ -239,7 +236,6 @@
 				AA4249A72609614C0088163E /* ContentView.swift in Sources */,
 				AA4249B92609B2A10088163E /* DataEntryView.swift in Sources */,
 				AA4E6AF3264A0D7400E312DB /* Home.swift in Sources */,
-				AADE40D9264C77E100FA0DFA /* GraphView.swift in Sources */,
 				AA4249B5260961820088163E /* FirstScreen.swift in Sources */,
 				AA6386BA2641E029007839C2 /* User.swift in Sources */,
 				AA4249A52609614C0088163E /* HealthMeApp.swift in Sources */,
