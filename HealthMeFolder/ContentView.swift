@@ -56,7 +56,7 @@ struct ContentView: View {
         case .home:
             return AnyView(Home(user: currUser))
         case .graphs:
-            return AnyView(Text("GRAPHS"))
+            return AnyView(GraphView(user: currUser))
         case .add:
             return AnyView(DataEntryView(isRegistering: false, viewManager: viewManager, user: currUser)) // TODO: Fix
         case .newAdd:
