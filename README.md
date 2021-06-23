@@ -1,6 +1,6 @@
 # HealthMe
 
-HealthMe is an iOS health application that helps the user keep track of their health trends (e.g. BMI) and visualize how they change over time.  The app stored data in an online database which enabled the user to logout and login without losing progress.
+HealthMe is an iOS health application that helps the user keep track of their health trends (e.g. BMI) and visualize how they change over time.  The app stores data in an online database which enabled the user to logout and login without losing progress.
 
 ## Visualizations
 WIP--will eventually contains gifs and images of HealthMe
