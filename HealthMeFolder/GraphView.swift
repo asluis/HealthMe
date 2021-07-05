@@ -11,7 +11,12 @@ struct GraphView: View {
     let user:User
     
     var body: some View {
-        Text("Hello, \(user.name)")
+        GeometryReader{ geo in
+            Bar(scalar: 0.5)
+                .fill(Color.red)
+                .frame(width: geo.size.width, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }
+        
     }
 }
 
@@ -19,15 +24,16 @@ struct GraphView: View {
 struct Bar: Shape{
     let scalar:CGFloat // Scales size of rect given relationship with data
     
-    
     // Starts drawing in top right of given rect/frame
     func path(in rect: CGRect) -> Path {
-        let adjustedWidth = scalar * rect.width
+        let adjustedWidthX = scalar * rect.maxX
         
         var path = Path()
         path.move(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: adjustedWidth, y: rect.maxY))
-        
+        path.addLine(to: CGPoint(x: adjustedWidthX, y: rect.minY))// needs to be round
+        path.addLine(to: CGPoint(x: adjustedWidthX, y: rect.maxY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY)) // Needs to be round
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
         return path
     }
 }
