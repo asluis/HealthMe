@@ -74,7 +74,7 @@ struct GraphCard: View{
             ZStack{
                 Bar(scalar: scalar, radius: 25, height: height, barColor: barColors)
                     .padding(.bottom, height)
-                Text("Recent")
+                Text("Recent: \(currentVal, specifier: "%.2f")")
                     .font(.headline)
                     .foregroundColor(darkBackground ? .white : .black)
             }
@@ -82,7 +82,7 @@ struct GraphCard: View{
             ZStack{
                 Bar(scalar: 1 - scalar, radius: 25, height: height, barColor: barColors)
                     .padding(.bottom, height)
-                Text("Average")
+                Text("Average: \(avg, specifier: "%.2f")")
                     .font(.headline)
                     .foregroundColor(darkBackground ? .white : .black)
             }
