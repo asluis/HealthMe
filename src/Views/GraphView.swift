@@ -19,17 +19,17 @@ struct GraphView: View {
                     Text("Compare your current stats to your average stats!")
                         .font(.title)
                     ScrollView{
-                        GraphCard(title: "Activity Time (min)", currentVal: CGFloat(user.activityTime), avg: 30, height: 100, darkBackground: true, barColors: Color("AddColor"))
+                        GraphCard(title: "Activity Time (min)", currentVal: CGFloat(user.activityTime), avg: CGFloat(user.activityTimeSum / user.inputCount), height: 100, darkBackground: true, barColors: Color("AddColor"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground").shadow(radius: 10))
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                         Spacer(minLength: 35)
-                        GraphCard(title: "Heart Rate (beats/min)", currentVal: 20, avg: 30, height: 100, darkBackground: true, barColors: Color("HeartBar"))
+                        GraphCard(title: "Heart Rate (beats/min)", currentVal: CGFloat(user.heartRate), avg: CGFloat(user.heartRateSum / user.inputCount), height: 100, darkBackground: true, barColors: Color("HeartBar"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground"))
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                         Spacer(minLength: 35)
-                        GraphCard(title: "Weight (lbs)", currentVal: 20, avg: 30, height: 100, darkBackground: true, barColors: Color("WeightBar"))
+                        GraphCard(title: "Weight (lbs)", currentVal: CGFloat(user.weight), avg: CGFloat(user.weightSum / Double(user.inputCount)), height: 100, darkBackground: true, barColors: Color("WeightBar"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground"))
                             .clipShape(RoundedRectangle(cornerRadius: 25))
@@ -130,6 +130,6 @@ struct Bar: View{
 
 struct GraphView_Previews: PreviewProvider {
     static var previews: some View {
-        GraphView(user: User(weight: 10, height: 10, gender: "", heartRate: 10, time: 10, inCal: 10, outCal: 10, inCount: 10, wSum: 10, hrSum: 10, atSum: 10))
+        GraphView(user: User(weight: 120, height: 10, gender: "", heartRate: 85, time: 80, inCal: 10, outCal: 10, inCount: 2, wSum: 230, hrSum: 180, atSum: 200))
     }
 }
