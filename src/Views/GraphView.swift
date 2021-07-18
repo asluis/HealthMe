@@ -11,6 +11,17 @@ struct GraphView: View {
     @StateObject var user:User
     
     var body: some View {
+        let activityTime = CGFloat(user.activityTime)
+        let weight = CGFloat(user.weight)
+        let heartRate = CGFloat(user.heartRate)
+        
+        let inputCount = CGFloat(user.inputCount)
+        
+        let activityAvg = CGFloat(user.activityTimeSum) / inputCount
+        let weightAvg = CGFloat(user.weightSum) / inputCount
+        let heartRateAvg = CGFloat(user.heartRateSum) / inputCount
+        
+        
         GeometryReader{geo in
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [Color("GraphViewBackground"), .white]), startPoint: .top, endPoint: .bottom)
@@ -19,17 +30,17 @@ struct GraphView: View {
                     Text("Compare your current stats to your average stats!")
                         .font(.title)
                     ScrollView{
-                        GraphCard(title: "Activity Time (min)", currentVal: CGFloat(user.activityTime), avg: CGFloat(user.activityTimeSum / user.inputCount), height: 100, darkBackground: true, barColors: Color("AddColor"))
+                        GraphCard(title: "Activity Time (min)", currentVal: activityTime, avg: activityAvg, height: 100, darkBackground: true, barColors: Color("AddColor"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground").shadow(radius: 10))
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                         Spacer(minLength: 35)
-                        GraphCard(title: "Heart Rate (beats/min)", currentVal: CGFloat(user.heartRate), avg: CGFloat(user.heartRateSum / user.inputCount), height: 100, darkBackground: true, barColors: Color("HeartBar"))
+                        GraphCard(title: "Heart Rate (beats/min)", currentVal: heartRate, avg: heartRateAvg, height: 100, darkBackground: true, barColors: Color("HeartBar"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground"))
                             .clipShape(RoundedRectangle(cornerRadius: 25))
                         Spacer(minLength: 35)
-                        GraphCard(title: "Weight (lbs)", currentVal: CGFloat(user.weight), avg: CGFloat(user.weightSum / Double(user.inputCount)), height: 100, darkBackground: true, barColors: Color("WeightBar"))
+                        GraphCard(title: "Weight (lbs)", currentVal: weight, avg: weightAvg, height: 100, darkBackground: true, barColors: Color("WeightBar"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground"))
                             .clipShape(RoundedRectangle(cornerRadius: 25))
