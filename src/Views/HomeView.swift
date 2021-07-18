@@ -20,7 +20,7 @@ struct Home: View {
         GeometryReader{ geo in
             ZStack{
                 LinearGradient(gradient: Gradient(colors: [.blue, .black]), startPoint: .top, endPoint: .bottom)
-                
+                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 VStack{
                     Text("Hello \(user.name)!")
                         .font(.largeTitle)

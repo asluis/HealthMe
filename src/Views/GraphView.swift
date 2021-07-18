@@ -8,18 +8,33 @@
 import SwiftUI
 
 struct GraphView: View {
-    let user:User
+    @StateObject var user:User
     
     var body: some View {
         GeometryReader{geo in
-            ScrollView{
+            ZStack{
+                LinearGradient(gradient: Gradient(colors: [Color("GraphViewBackground"), .white]), startPoint: .top, endPoint: .bottom)
+                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 VStack(alignment: .center){
-                    GraphCard(title: "TITLE", currentVal: 20, avg: 30, height: 100, name: "Heart rate");
+                    Text("Compare your current stats to your average stats!")
+                        .font(.title)
+                    ScrollView{
+                        GraphCard(title: "Activity Time (min)", currentVal: CGFloat(user.activityTime), avg: 30, height: 100, darkBackground: true, barColors: Color("AddColor"))
+                            .frame(width: geo.size.width * 0.9)
+                            .background(Color("CardBackground").shadow(radius: 10))
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                        Spacer(minLength: 35)
+                        GraphCard(title: "Heart Rate (beats/min)", currentVal: 20, avg: 30, height: 100, darkBackground: true, barColors: Color("HeartBar"))
+                            .frame(width: geo.size.width * 0.9)
+                            .background(Color("CardBackground"))
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                        Spacer(minLength: 35)
+                        GraphCard(title: "Weight (lbs)", currentVal: 20, avg: 30, height: 100, darkBackground: true, barColors: Color("WeightBar"))
+                            .frame(width: geo.size.width * 0.9)
+                            .background(Color("CardBackground"))
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                    }
                 }
-                .frame(width: geo.size.width * 0.9)
-                .background(Color("TileColor"))
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .shadow(radius: 1)
             }
         }
     }
@@ -30,7 +45,8 @@ struct GraphCard: View{
     let currentVal:CGFloat
     let avg:CGFloat
     let height:CGFloat
-    let name:String
+    let darkBackground:Bool
+    let barColors:Color
     
     var scalar:CGFloat {
         let total = currentVal + avg
@@ -42,18 +58,22 @@ struct GraphCard: View{
             Text(title)
                 .font(.title3)
                 .bold()
+                .padding(.top)
+                .foregroundColor(darkBackground ? .white : .black)
             ZStack{
-                Bar(scalar: scalar, radius: 25, height: height)
+                Bar(scalar: scalar, radius: 25, height: height, barColor: barColors)
                     .padding(.bottom, height)
-                Text("Recent \(name)")
+                Text("Recent")
                     .font(.headline)
+                    .foregroundColor(darkBackground ? .white : .black)
             }
             
             ZStack{
-                Bar(scalar: 1 - scalar, radius: 25, height: height)
+                Bar(scalar: 1 - scalar, radius: 25, height: height, barColor: barColors)
                     .padding(.bottom, height)
-                Text("Average \(name)")
+                Text("Average")
                     .font(.headline)
+                    .foregroundColor(darkBackground ? .white : .black)
             }
         }
     }
@@ -69,6 +89,7 @@ struct Bar: View{
     let scalar: CGFloat
     let radius: CGFloat
     let height:CGFloat
+    let barColor:Color
     
     var body: some View{
         GeometryReader{ geo in
@@ -76,7 +97,7 @@ struct Bar: View{
                 //.stroke(Color.black, lineWidth: 3)
                 .strokeBorder(Color.black, lineWidth: 4)
                 .frame(width: geo.size.width, height: height)
-                .background(MyBar(myScalar: scalar, myRadius: radius).fill(Color.blue))
+                .background(MyBar(myScalar: scalar, myRadius: radius).fill(barColor))
         }
     }
     
