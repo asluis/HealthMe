@@ -29,7 +29,8 @@ struct GraphView: View {
                 VStack(alignment: .center){
                     Text("Compare your current stats to your average stats!")
                         .font(.title)
-                    ScrollView{
+                        .foregroundColor(.black)
+                    ScrollView(showsIndicators: false){
                         GraphCard(title: "Activity Time (min)", currentVal: activityTime, avg: activityAvg, height: 100, darkBackground: true, barColors: Color("AddColor"))
                             .frame(width: geo.size.width * 0.9)
                             .background(Color("CardBackground").shadow(radius: 10))
