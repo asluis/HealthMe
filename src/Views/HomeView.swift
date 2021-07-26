@@ -12,7 +12,6 @@ struct Home: View {
     @StateObject var user:User
     var bmi:Double {
         let height:Double = (Double)(user.height)
-        print(height)
         return ((user.weight / height) / height) * 703.0
     }
     
@@ -40,7 +39,7 @@ struct Home: View {
                             Text("Heartrate: \(user.heartRate) bpm")
                                 .font(.headline)
                                 .padding()
-                            Text("BMI: \(bmi)")
+                            Text("BMI: \(bmi, specifier: "%.1f")")
                                 .font(.headline)
                                 .padding()
                         }
@@ -60,15 +59,15 @@ struct Home: View {
                                     .scaledToFit()
                                     .foregroundColor(Color.black)
                             }
+                            VStack{
+                                Text("Weight: \(user.weight, specifier: "%.1f") lbs")
+                                    .font(.headline)
+                                Text("Height: \(user.height) inches")
+                                    .font(.headline)
+                                    .padding()
+                            }
                             Text("Gender: \(user.gender)")
                                 .font(.headline)
-                                .padding()
-                            Text("Weight: \(user.weight) lbs")
-                                .font(.headline)
-                                .padding()
-                            Text("Height: \(user.height) inches")
-                                .font(.headline)
-                                .padding()
                         }
                         .frame(width: geo.size.width * 0.9)
                         .background(Color("TileColor1"))
@@ -107,6 +106,6 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home(user: User(weight: 10, height: 10, gender: "", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
+        Home(user: User(weight: 10, height: 10, gender: "male", heartRate: 0, time: 0, inCal: 0, outCal: 0, inCount: 0, wSum: 0, hrSum: 0, atSum: 0))
     }
 }
