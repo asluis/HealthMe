@@ -12,7 +12,6 @@ struct Home: View {
     @StateObject var user:User
     var bmi:Double {
         let height:Double = (Double)(user.height)
-        print(height)
         return ((user.weight / height) / height) * 703.0
     }
     
