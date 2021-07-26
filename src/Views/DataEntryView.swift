@@ -43,7 +43,7 @@ struct DataEntryView: View {
                             Section(header: Text("Vitals")){
                                 TextField("Heartrate (beats per min)", text: $hr)
                                     .keyboardType(.numberPad)
-                                TextField("Height", text: $height)
+                                TextField("Height (inches)", text: $height)
                                     .keyboardType(.numberPad)
                             }
                             Section(header: Text("Activity")){
