@@ -29,7 +29,8 @@ struct Home: View {
                         HStack(alignment: .center){
                             VStack{
                                 Text("Vitals")
-                                    .font(.title)
+                                    .font(.headline)
+                                    .bold()
                                     .padding()
                                 Image(systemName: "waveform.path.ecg")
                                     .resizable()
