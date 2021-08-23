@@ -36,33 +36,37 @@ struct DataEntryView: View {
             GeometryReader{ geo in
                 VStack{
                     Form{
-                        Section(header: Text("Your info")){
-                            TextField("Name", text: $name)
-                            TextField("Gender", text: $gender)
+                        if isRegistering { // Only ask for static info is registering
+                            Section(header: Text("Your info")){
+                                TextField("Name", text: $name)
+                                TextField("Gender", text: $gender)
+                            }
                         }
-                            Section(header: Text("Vitals")){
-                                TextField("Heartrate (beats per min)", text: $hr)
-                                    .keyboardType(.numberPad)
-                                TextField("Height (inches)", text: $height)
-                                    .keyboardType(.numberPad)
-                            }
-                            Section(header: Text("Activity")){
-                                TextField("Weight (lbs)", text: $weight)
-                                    .keyboardType(.numberPad)
-                                TextField("Activity Time (min)", text: $time)
-                                    .keyboardType(.numberPad)
+                        Section(header: Text("Vitals")){
+                            TextField("Heartrate (beats per min)", text: $hr)
+                                .keyboardType(.numberPad)
+                            TextField("Height (inches)", text: $height)
+                                .keyboardType(.numberPad)
+                        }
+                        Section(header: Text("Activity")){
+                            TextField("Weight (lbs)", text: $weight)
+                                .keyboardType(.numberPad)
+                            TextField("Activity Time (min)", text: $time)
+                                .keyboardType(.numberPad)
 
-                                TextField("Calories in", text: $inCal)
-                                    .keyboardType(.numberPad)
+                            TextField("Calories in", text: $inCal)
+                                .keyboardType(.numberPad)
 
-                                TextField("Calories out", text: $outCal)
-                                    .keyboardType(.numberPad)
-                            }
+                            TextField("Calories out", text: $outCal)
+                                .keyboardType(.numberPad)
+                        }
                     }
                     Button(action: {
-                        setName()
-                        user.gender = gender
-                        user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!, height: Int(height)!, name: name)
+                        if isRegistering {
+                            setName()
+                            user.replaceStaticData(name: name, gender: gender)
+                        }
+                        user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!, height: Int(height)!)
                         pushUser()
                         viewManager.currentView = .home
                     }){

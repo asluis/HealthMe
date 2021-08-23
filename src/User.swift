@@ -34,6 +34,11 @@ class User: ObservableObject{
         activityTimeSum = atSum
     }
     
+    func replaceStaticData(name:String, gender:String){
+        self.name = name;
+        self.gender = gender;
+    }
+    
     func replaceData(weight:Double, height:Int, gender:String, heartRate:Int, time:Int, inCal:Int, outCal:Int, inCount: Int, wSum: Double, hrSum:Int, atSum:Int, name: String){
         self.weight = weight
         self.height = height
@@ -48,7 +53,7 @@ class User: ObservableObject{
         self.name = name;
     }
     
-    func addData(weight:Double, heartRate:Int, time:Int, inCal:Int, outCal:Int, height:Int, name:String){
+    func addData(weight:Double, heartRate:Int, time:Int, inCal:Int, outCal:Int, height:Int){
         inputCount += 1
         self.weightSum = weightSum + weight
         self.weight = weight
@@ -59,6 +64,5 @@ class User: ObservableObject{
         activityTime = time
         self.inCal = inCal
         self.outCal = outCal
-        self.name = name
     }
 }
