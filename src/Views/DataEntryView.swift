@@ -61,8 +61,6 @@ struct DataEntryView: View {
                     }
                     Button(action: {
                         setName()
-                        user.name = name
-                        print("Name is now \(user.name)")
                         user.gender = gender
                         user.addData(weight: Double(weight)!, heartRate: Int(hr)!, time: Int(time)!, inCal: Int(inCal)!, outCal: Int(outCal)!, height: Int(height)!, name: name)
                         pushUser()

@@ -45,7 +45,7 @@ class User: ObservableObject{
         heartRateSum = hrSum
         activityTimeSum = atSum
         self.inputCount = inputCount
-        
+        self.name = name;
     }
     
     func addData(weight:Double, heartRate:Int, time:Int, inCal:Int, outCal:Int, height:Int, name:String){
