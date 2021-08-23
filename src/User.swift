@@ -57,7 +57,7 @@ class User: ObservableObject{
         inputCount += 1
         self.weightSum = weightSum + weight
         self.weight = weight
-        heartRateSum = self.heartRate + heartRate
+        heartRateSum = self.heartRateSum + heartRate
         self.activityTimeSum = activityTimeSum + time
         self.height = height
         self.heartRate = heartRate
